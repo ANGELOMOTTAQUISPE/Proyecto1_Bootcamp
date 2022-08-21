@@ -8,5 +8,5 @@ public interface ICRUD <T, V>{
     Mono<T> modify(T obj);
     Flux<T> list();
     Mono<T> listofId(V id);
-    boolean delete(V id);
+    Mono<Void> delete(V id);
 }

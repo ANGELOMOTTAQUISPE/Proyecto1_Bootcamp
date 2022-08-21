@@ -33,8 +33,7 @@ public class SavingAccountServiceImpl implements ISavingAccountService {
         return op;
     }
     @Override
-    public boolean delete(String id) {
-        repo.deleteById(id);
-        return true;
+    public Mono<Void> delete(String id) {
+        return repo.deleteById(id);
     }
 }

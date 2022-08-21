@@ -24,4 +24,15 @@ public class ClientController {
         Mono<Client> p = service.register(client);
         return new ResponseEntity<Mono<Client>>(p, HttpStatus.CREATED);
     }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> eliminar(@PathVariable("id") String id) {
+        Mono<Client> p = service.listofId(id);
+        service.delete(id);
+        return new ResponseEntity<>("",HttpStatus.OK);
+    }
+    @GetMapping("/documentNumber/{documentNumber}")
+    public ResponseEntity<Mono<Client>> clientbydocumentNumber(@PathVariable("documentNumber") String documentNumber){
+        Mono<Client> lista = service.clientbydocumentNumber(documentNumber);
+        return new ResponseEntity<Mono<Client>>(lista, HttpStatus.OK);
+    }
 }

@@ -34,8 +34,7 @@ public class ChekingAccountServiceImpl implements IChekingAccountService {
         return op;
     }
     @Override
-    public boolean delete(String id) {
-        repo.deleteById(id);
-        return true;
+    public Mono<Void> delete(String id) {
+        return repo.deleteById(id);
     }
 }
