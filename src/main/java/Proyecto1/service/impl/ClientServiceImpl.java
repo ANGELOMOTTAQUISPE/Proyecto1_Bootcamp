@@ -33,10 +33,15 @@ public class ClientServiceImpl implements IClientService {
         return op;
     }
     @Override
-    public Mono<Void> delete(String id) {
-        return repo.deleteById(id);
+    public Mono<Client> delete(String id) {
+        return repo.findById(id).flatMap(r-> repo.delete(r).then(Mono.just(r)));
     }
+
     public Mono<Client> clientbydocumentNumber (String documentNumber){
         return repo.findByDocumentNumber(documentNumber);
     }
+    public Mono<Long> countClient (){
+        return repo.count();
+    }
+
 }

@@ -33,7 +33,8 @@ public class FixedTermAccountServiceImpl implements IFixedTermAccountService {
         return op;
     }
     @Override
-    public Mono<Void> delete(String id) {
-        return repo.deleteById(id);
+    public Mono<FixedTermAccount> delete(String id) {
+        //return repo.deleteById(id);
+        return repo.findById(id).flatMap(r-> repo.delete(r).then(Mono.just(r)));
     }
 }

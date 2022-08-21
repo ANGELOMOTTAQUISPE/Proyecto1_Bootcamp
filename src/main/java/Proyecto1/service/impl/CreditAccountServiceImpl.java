@@ -32,8 +32,7 @@ public class CreditAccountServiceImpl implements ICreditAccountService {
         Mono<CreditAccount> op = repo.findById(id);
         return op;
     }
-    @Override
-    public Mono<Void> delete(String id) {
-        return repo.deleteById(id);
+    public Mono<CreditAccount> delete(String id) {
+        return repo.findById(id).flatMap(r-> repo.delete(r).then(Mono.just(r)));
     }
 }
